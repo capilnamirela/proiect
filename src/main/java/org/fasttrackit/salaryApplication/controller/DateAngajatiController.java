@@ -13,12 +13,12 @@ import java.util.List;
 public class DateAngajatiController {
     private final DateAngajatiService service;
 
-    @GetMapping("/datePersonale")
+    @GetMapping("/date_personale")
     public List<DateAngajati> getAllEmployeesPersonalData() {
         return service.getDateAngajati();
     }
 
-    @PostMapping("/datePersonale")
+    @PostMapping("/date_personale")
     public DateAngajati addNewEmployee(@RequestBody DateAngajati newEmployee) {
         return service.addNewEmployee(newEmployee);
     }

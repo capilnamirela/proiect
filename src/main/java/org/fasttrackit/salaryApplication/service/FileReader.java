@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static java.lang.Integer.valueOf;
@@ -29,7 +32,7 @@ public class FileReader implements DataProvider {
         List<DateAngajati> dateAngajatiList = Files.lines(Path.of(fileAngajatiPath))
                 .map(this::lineToDateAngajati)
                 .toList();
-       // System.out.println(dateAngajatiList);
+        // System.out.println(dateAngajatiList);
         return dateAngajatiList;
     }
 
@@ -39,7 +42,7 @@ public class FileReader implements DataProvider {
         List<DateAngajareUnitate> dateAngajareUnitateList = Files.lines(Path.of(fileAngajatiPath))
                 .map(this::lineToDateAngajareUnitate)
                 .toList();
-       // System.out.println(dateAngajareUnitateList);
+        // System.out.println(dateAngajareUnitateList);
         return dateAngajareUnitateList;
     }
 
@@ -49,7 +52,7 @@ public class FileReader implements DataProvider {
         List<DateSalariale> dateSalarialeList = Files.lines(Path.of(fileAngajatiPath))
                 .map(this::lineToDateSalariale)
                 .toList();
-     //   System.out.println(dateSalarialeList);
+        //   System.out.println(dateSalarialeList);
         return dateSalarialeList;
     }
 
@@ -59,7 +62,7 @@ public class FileReader implements DataProvider {
         List<Pontaj> pontajList = Files.lines(Path.of(filePontajPath))
                 .map(this::lineToPontaj)
                 .toList();
-     //   System.out.println(pontajList);
+        //   System.out.println(pontajList);
         return pontajList;
     }
 
@@ -78,10 +81,15 @@ public class FileReader implements DataProvider {
         String[] angajati = line.split("\\|");
         return DateAngajareUnitate.builder()
                 .marca(valueOf(angajati[0]))
-                .dataAngajariiUnitate(angajati[5])
+                .dataAngajariiUnitate(citireDateCaledaristice(angajati[5]))
                 .departament(angajati[6])
                 .functie(angajati[7])
                 .build();
+    }
+
+    private static LocalDate citireDateCaledaristice(String data) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        return LocalDate.parse(data, formatter);
     }
 
     private DateSalariale lineToDateSalariale(String line) {
