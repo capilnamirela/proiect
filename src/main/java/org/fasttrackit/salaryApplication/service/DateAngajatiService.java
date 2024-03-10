@@ -20,9 +20,19 @@ public class DateAngajatiService {
     public List<DateAngajati> getDateAngajati() {
         return dateAngajatiRepository.findAll();
     }
+    public DateAngajati getAngajatByMarca(Integer marca){
+        return dateAngajatiRepository.findByMarca(marca);
+    }
 
-    public DateAngajati addNewEmployee(DateAngajati newEmployee) {
-        return dateAngajatiRepository.save(newEmployee);
+
+    public DateAngajati addAngajatNou(DateAngajati angajatNou) {
+        return dateAngajatiRepository.save(angajatNou);
+    }
+
+    public DateAngajati deleteAngajat(Integer marca){
+        DateAngajati dateAngajatPtSters = dateAngajatiRepository.findByMarca(marca);
+        dateAngajatiRepository.deleteById(marca);
+        return dateAngajatPtSters;
     }
 
 

@@ -1,8 +1,7 @@
 package org.fasttrackit.salaryApplication.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -22,5 +21,7 @@ public class DateAngajareUnitate {
     private String departament;
     @Column
     private String functie;
+
+
 }
 

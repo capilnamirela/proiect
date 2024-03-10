@@ -24,14 +24,17 @@ public class DateAngajati {
 
     @JsonIgnore
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "marca")
     private DateAngajareUnitate dateAngajareUnitate;
 
     @JsonIgnore
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "marca")
     private DateSalariale dateSalariale;
 
     @JsonIgnore
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "marca")
     private Pontaj pontaj;
 
 }

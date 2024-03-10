@@ -18,10 +18,19 @@ public class DateAngajatiController {
         return service.getDateAngajati();
     }
 
-    @PostMapping("/date_personale")
-    public DateAngajati addNewEmployee(@RequestBody DateAngajati newEmployee) {
-        return service.addNewEmployee(newEmployee);
+    @GetMapping("/date_personale/{marca}")
+    public DateAngajati getAngajatByMarca(@PathVariable Integer marca) {
+        return service.getAngajatByMarca(marca);
     }
 
+    @PostMapping("/date_personale")
+    public DateAngajati addNewEmployee(@RequestBody DateAngajati newEmployee) {
+        return service.addAngajatNou(newEmployee);
+    }
+
+    @DeleteMapping("/date_personale/{marca}")
+    public DateAngajati deleteEmployee(@PathVariable Integer marca) {
+        return service.deleteAngajat(marca);
+    }
 
 }
