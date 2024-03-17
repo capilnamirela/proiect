@@ -1,6 +1,7 @@
 package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
+import org.fasttrackit.salaryApplication.exceptions.ResourceNotFoundException;
 import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.repository.DateAngajareUnitateRepository;
@@ -25,8 +26,10 @@ public class DateAngajareUnitateService {
         return dateAngajareUnitateRepository.findAll();
     }
 
-    public DateAngajareUnitate getDateAngajatiByMarca(Integer marca) {
-        return dateAngajareUnitateRepository.findByMarca(marca);
+    public DateAngajareUnitate getDateAngajareByMarca(Integer marca) {
+        DateAngajareUnitate dateAngajareUnitate = dateAngajareUnitateRepository.findById(marca)
+                .orElseThrow(() -> new ResourceNotFoundException("Datele pentru angajatul cu marca: %s nu au fost gasite".formatted(marca)));
+        return dateAngajareUnitate;
     }
 
     public DateAngajareUnitate addAngajatNouDateAngajare(DateAngajareUnitate angajatNou) {
@@ -40,6 +43,17 @@ public class DateAngajareUnitateService {
 
     }
 
+    public DateAngajareUnitate updateDateAngajareUnitate(Integer marca, DateAngajareUnitate updateDateAngajare) {
+        DateAngajareUnitate foundDateAngajare = getDateAngajareByMarca(marca);
+        DateAngajareUnitate updatedAngajare = DateAngajareUnitate.builder()
+                .marca(foundDateAngajare.getMarca())
+                .dataAngajariiUnitate(updateDateAngajare.getDataAngajariiUnitate())
+                .departament(updateDateAngajare.getDepartament())
+                .functie(updateDateAngajare.getFunctie())
+                .build();
+        return dateAngajareUnitateRepository.save(updatedAngajare);
+    }
+
     public DateAngajareUnitate deleteDateAngajareUnitate(Integer marca) {
         DateAngajareUnitate dateAngajareUnitatePtSters = dateAngajareUnitateRepository.findByMarca(marca);
         dateAngajareUnitateRepository.deleteById(marca);
@@ -47,4 +61,3 @@ public class DateAngajareUnitateService {
     }
 
 }
-

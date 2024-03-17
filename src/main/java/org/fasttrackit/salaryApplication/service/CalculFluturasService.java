@@ -1,12 +1,16 @@
 package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
+import org.fasttrackit.salaryApplication.model.DateAngajati;
+import org.fasttrackit.salaryApplication.model.DateSalariale;
 import org.fasttrackit.salaryApplication.repository.DateAngajatiRepository;
 import org.fasttrackit.salaryApplication.repository.DateSalarialeRepository;
 import org.fasttrackit.salaryApplication.repository.PontajRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -47,6 +51,18 @@ public class CalculFluturasService {
         return fluturas;
     }
 
+    public List<Map<String, Integer>> getFluturasiSalarizare() {
+        List<Map<String, Integer>> fluturasi = new ArrayList<>();
+
+        for (DateSalariale dateSalariale : dateSalarialeRepository.findAll()) {
+            Map<String, Integer> fluturas = fluturasSalarizareMarca(dateSalariale.getMarca());
+            fluturasi.add(fluturas);
+        }
+        return fluturasi;
+    }
+
+
+
     public Integer salariuCO(Integer marca) {
         Integer salariuIncadrare = dateSalarialeRepository.findByMarca(marca).getSalariuIncadrare();
         Integer alteDrepturi = dateSalarialeRepository.findByMarca(marca).getAlteDrepturi();
@@ -75,35 +91,33 @@ public class CalculFluturasService {
         return (ticheteMasaPeZiLucrata * zileLucrate);
     }
 
+    private int getBazaVenitPtCalculCASCASS(Integer marca) {
+        return salariuCO(marca) + salariuZileLucrate(marca) + salariuAlteDrepturi(marca);
+    }
+
     public Integer calculCAS(Integer marca) {
-        int bazaVenitPtCalculCAS = salariuCO(marca) + salariuZileLucrate(marca) + salariuAlteDrepturi(marca);
-        return (int) (bazaVenitPtCalculCAS * PROCENT_CAS);
+        return (int) (getBazaVenitPtCalculCASCASS(marca) * PROCENT_CAS);
     }
 
     public Integer calculCASS(Integer marca) {
-        int bazaVenitPtCalculCASS = salariuCO(marca) + salariuZileLucrate(marca) + salariuAlteDrepturi(marca);
-        return (int) (bazaVenitPtCalculCASS * PROCENT_CASS);
+        return (int) (getBazaVenitPtCalculCASCASS(marca) * PROCENT_CASS);
+    }
+
+    private int getBazaVenitPtCalculImpozit(Integer marca) {
+        return salariuCO(marca) +
+                salariuZileLucrate(marca) +
+                salariuAlteDrepturi(marca) +
+                ticheteMasa(marca) -
+                calculCAS(marca) -
+                calculCASS(marca);
     }
 
     public Integer calculImpozit(Integer marca) {
-        int bazaVenitPtCalculImpozit = salariuCO(marca) +
-                salariuZileLucrate(marca) +
-                salariuAlteDrepturi(marca) +
-                ticheteMasa(marca) -
-                calculCAS(marca) -
-                calculCASS(marca);
-        return (int) (bazaVenitPtCalculImpozit * PROCENT_IMPOZIT);
+        return (int) (getBazaVenitPtCalculImpozit(marca) * PROCENT_IMPOZIT);
     }
 
     public Integer venitNet(Integer marca) {
-        int bazaVenitPtCalculImpozit = salariuCO(marca) +
-                salariuZileLucrate(marca) +
-                salariuAlteDrepturi(marca) +
-                ticheteMasa(marca) -
-                calculCAS(marca) -
-                calculCASS(marca);
-        int impozit = calculImpozit(marca);
-        return bazaVenitPtCalculImpozit - impozit;
+        return getBazaVenitPtCalculImpozit(marca) - calculImpozit(marca);
     }
 
 

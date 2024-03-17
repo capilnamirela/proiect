@@ -8,10 +8,10 @@ import org.fasttrackit.salaryApplication.model.Pontaj;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -22,48 +22,56 @@ public class FileReader implements DataProvider {
     @Value("${file.angajati}")
     private String fileAngajatiPath;
 
-
     @Value("${file.pontaj}")
     private String filePontajPath;
 
-    @SneakyThrows
     @Override
     public List<DateAngajati> completeazaDateAngajati() {
-        List<DateAngajati> dateAngajatiList = Files.lines(Path.of(fileAngajatiPath))
-                .map(this::lineToDateAngajati)
-                .toList();
-        // System.out.println(dateAngajatiList);
-        return dateAngajatiList;
+        try {
+            return Files.lines(Path.of(fileAngajatiPath))
+                    .map(this::lineToDateAngajati)
+                    .toList();
+        } catch (IOException exception) {
+            System.out.println("Eroare la citirea datelor din fisier");
+            return List.of();
+        }
+
     }
 
-    @SneakyThrows
     @Override
     public List<DateAngajareUnitate> completeazaDateAngajare() {
-        List<DateAngajareUnitate> dateAngajareUnitateList = Files.lines(Path.of(fileAngajatiPath))
-                .map(this::lineToDateAngajareUnitate)
-                .toList();
-        // System.out.println(dateAngajareUnitateList);
-        return dateAngajareUnitateList;
+        try {
+            return Files.lines(Path.of(fileAngajatiPath))
+                    .map(this::lineToDateAngajareUnitate)
+                    .toList();
+        } catch (IOException exception) {
+            System.out.println("Eroare la citirea datelor din fisier");
+            return List.of();
+        }
     }
 
-    @SneakyThrows
     @Override
     public List<DateSalariale> completeazaDateSalariale() {
-        List<DateSalariale> dateSalarialeList = Files.lines(Path.of(fileAngajatiPath))
-                .map(this::lineToDateSalariale)
-                .toList();
-        //   System.out.println(dateSalarialeList);
-        return dateSalarialeList;
+        try {
+            return Files.lines(Path.of(fileAngajatiPath))
+                    .map(this::lineToDateSalariale)
+                    .toList();
+        } catch (IOException exception) {
+            System.out.println("Eroare la citirea datelor din fisier");
+            return List.of();
+        }
     }
 
-    @SneakyThrows
     @Override
     public List<Pontaj> completeazaPontaj() {
-        List<Pontaj> pontajList = Files.lines(Path.of(filePontajPath))
-                .map(this::lineToPontaj)
-                .toList();
-        //   System.out.println(pontajList);
-        return pontajList;
+        try {
+            return Files.lines(Path.of(filePontajPath))
+                    .map(this::lineToPontaj)
+                    .toList();
+        } catch (IOException exception) {
+            System.out.println("Eroare la citirea datelor din fisier");
+            return List.of();
+        }
     }
 
     private DateAngajati lineToDateAngajati(String line) {
@@ -88,7 +96,7 @@ public class FileReader implements DataProvider {
     }
 
     private static LocalDate citireDateCaledaristice(String data) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(data, formatter);
     }
 

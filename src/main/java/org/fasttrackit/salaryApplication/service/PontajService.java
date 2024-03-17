@@ -1,6 +1,7 @@
 package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
+import org.fasttrackit.salaryApplication.exceptions.ResourceNotFoundException;
 import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.model.DateSalariale;
@@ -27,12 +28,14 @@ public class PontajService {
     }
 
     public Pontaj getPontajByMarca(Integer marca) {
-        return pontajRepository.findByMarca(marca);
+        Pontaj pontaj = pontajRepository.findById(marca)
+                .orElseThrow(() -> new ResourceNotFoundException("Pontajul pentru angajatul cu marca: %s nu a fost gasit".formatted(marca)));
+        return pontaj;
     }
 
 
     public Pontaj addPontaj(Pontaj pontajAngajat) {
-       Pontaj completarePontaj = Pontaj.builder()
+        Pontaj completarePontaj = Pontaj.builder()
                 .marca(pontajAngajat.getMarca())
                 .zileLucratoare(pontajAngajat.getZileLucratoare())
                 .zileLucrate(pontajAngajat.getZileLucrate())
@@ -43,7 +46,19 @@ public class PontajService {
 
     }
 
-    public Pontaj deletePontaj(Integer marca){
+    public Pontaj updatePontaj(Integer marca, Pontaj updatePontaj) {
+        Pontaj foundPontaj = getPontajByMarca(marca);
+        Pontaj updatedPontaj = Pontaj.builder()
+                .marca(foundPontaj.getMarca())
+                .zileLucratoare(foundPontaj.getZileLucratoare())
+                .zileLucrate(foundPontaj.getZileLucrate())
+                .zileCO(foundPontaj.getZileCO())
+                .zileCFS(foundPontaj.getZileCFS())
+                .build();
+        return pontajRepository.save(updatedPontaj);
+    }
+
+    public Pontaj deletePontaj(Integer marca) {
         Pontaj pontajPtSters = pontajRepository.findByMarca(marca);
         pontajRepository.deleteById(marca);
         return pontajPtSters;

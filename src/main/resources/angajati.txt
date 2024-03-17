@@ -1,3 +1,11 @@
-1|Popescu|Marius|1870219419747|Bucuresti, Str. Panselelor nr. 5|12.05.2021|IT|Programator|7000|0|40
-2|Vasile|Andreea|2880315491487|Bucuresti, Str. Freziei nr.25|15.01.1999|IT|Programator|8500|0|40
-3|Mihai|Cristina|2940524051485|Bucuresti, Str. Lunga nr. 37|15.06.2020|Salarizare|Contabil|5000|0|40
+1|Popescu|Marius|1870219419747|Bucuresti, Str. Panselelor nr. 5|12/05/2021|IT|Programator|7000|0|40
+2|Vasile|Andreea|2880315491487|Bucuresti, Str. Freziei nr.25|15/01/1999|IT|Programator|8500|0|40
+3|Mihai|Cristina|2940524051485|Bucuresti, Str. Lunga nr. 37|15/06/2020|Salarizare|Contabil|6000|0|40
+4|Popa|Cristian|1950524051485|Bucuresti, Str. Lunga nr. 45|15/06/2020|Salarizare|Contabil|7500|0|40
+5|Ionascu|Alexandra|2830524051485|Bucuresti, Str. Magnoliei nr. 38|15/06/2022|IT|Programator|8500|0|40
+6|Craiun|Maria|2870524051485|Bucuresti, Str. Sitei nr. 44|25/08/2021|IT|Programator|10500|0|40
+7|Mihai|Ioan|1940524051485|Bucuresti, Str. Verde nr. 137|15/06/2023|IT|Programator|9500|0|40
+8|Pavel|Dorina|2860524051485|Bucuresti, Str. Mica nr. 25|01/09/2020|Salarizare|Contabil|7000|0|40
+9|Dumbraveanu|Andrei|1880524051485|Bucuresti, Str. Brasov nr. 225|15/07/2015|IT|Programator|7500|0|40
+10|Cristescu|Adelina|2990524051485|Bucuresti, Str. Alexandriei nr. 148|01/01/2020|IT|Programator|9000|0|40
+11|Mihalache|Arina|2930524051485|Bucuresti, Str. Lunga nr. 237|15/06/2020|Salarizare|Contabil|7000|0|40

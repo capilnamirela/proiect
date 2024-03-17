@@ -1,6 +1,7 @@
 package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
+import org.fasttrackit.salaryApplication.exceptions.ResourceNotFoundException;
 import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.model.DateSalariale;
@@ -24,12 +25,16 @@ public class DateSalarialeService {
     public List<DateSalariale> getDateSalariale() {
         return dateSalarialeRepository.findAll();
     }
+
     public DateSalariale getDateSalarialeByMarca(Integer marca) {
-        return dateSalarialeRepository.findByMarca(marca);
+        DateSalariale dateSalariale = dateSalarialeRepository.findById(marca)
+                .orElseThrow(() -> new ResourceNotFoundException("Datele salariale pentru angajatul cu marca: %s nu au fost gasite".formatted(marca)));
+        return dateSalariale;
     }
 
+
     public DateSalariale addAngajatNouDateSalariale(DateSalariale angajatNou) {
-       DateSalariale completareDateSalarizareAngajatNou = DateSalariale.builder()
+        DateSalariale completareDateSalarizareAngajatNou = DateSalariale.builder()
                 .marca(angajatNou.getMarca())
                 .salariuIncadrare(angajatNou.getSalariuIncadrare())
                 .alteDrepturi(angajatNou.getAlteDrepturi())
@@ -37,7 +42,19 @@ public class DateSalarialeService {
                 .build();
         return dateSalarialeRepository.save(completareDateSalarizareAngajatNou);
     }
-    public DateSalariale deleteDateSalariale(Integer marca){
+
+    public DateSalariale updateDateSalariale(Integer marca, DateSalariale updateDateSalariale) {
+        DateSalariale foundDateSalariale = getDateSalarialeByMarca(marca);
+        DateSalariale updatedDateSalariale = DateSalariale.builder()
+                .marca(foundDateSalariale.getMarca())
+                .salariuIncadrare(foundDateSalariale.getSalariuIncadrare())
+                .alteDrepturi(foundDateSalariale.getAlteDrepturi())
+                .ticheteMasa(foundDateSalariale.getTicheteMasa())
+                .build();
+        return dateSalarialeRepository.save(updateDateSalariale);
+    }
+
+    public DateSalariale deleteDateSalariale(Integer marca) {
         DateSalariale dateSalarialePtSters = dateSalarialeRepository.findByMarca(marca);
         dateSalarialeRepository.deleteById(marca);
         return dateSalarialePtSters;
