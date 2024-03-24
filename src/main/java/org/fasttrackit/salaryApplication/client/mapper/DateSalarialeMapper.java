@@ -1,9 +1,7 @@
-package org.fasttrackit.salaryApplication.client.model;
+package org.fasttrackit.salaryApplication.client.mapper;
 
-import org.fasttrackit.salaryApplication.model.DateAngajati;
+import org.fasttrackit.salaryApplication.client.model.DateSalarialeDTO;
 import org.fasttrackit.salaryApplication.model.DateSalariale;
-
-import static org.fasttrackit.salaryApplication.client.model.DateAngajatiDTO.*;
 
 public class DateSalarialeMapper {
 

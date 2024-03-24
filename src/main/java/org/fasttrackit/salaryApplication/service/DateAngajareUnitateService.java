@@ -3,10 +3,8 @@ package org.fasttrackit.salaryApplication.service;
 import lombok.Data;
 import org.fasttrackit.salaryApplication.exceptions.ResourceNotFoundException;
 import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
-import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.repository.DateAngajareUnitateRepository;
 import org.fasttrackit.salaryApplication.repository.DateAngajatiRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +31,7 @@ public class DateAngajareUnitateService {
     }
 
     public DateAngajareUnitate addAngajatNouDateAngajare(DateAngajareUnitate angajatNou) {
-       DateAngajareUnitate completareDateAngajareAngajatNou = DateAngajareUnitate.builder()
+        DateAngajareUnitate completareDateAngajareAngajatNou = DateAngajareUnitate.builder()
                 .marca(angajatNou.getMarca())
                 .dataAngajariiUnitate(angajatNou.getDataAngajariiUnitate())
                 .departament(angajatNou.getDepartament())

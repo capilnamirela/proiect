@@ -1,6 +1,5 @@
 package org.fasttrackit.salaryApplication.service;
 
-import lombok.SneakyThrows;
 import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.model.DateSalariale;

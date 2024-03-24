@@ -1,19 +1,15 @@
 package org.fasttrackit.salaryApplication.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.fasttrackit.salaryApplication.client.model.DateAngajareDTO;
-import org.fasttrackit.salaryApplication.client.model.DateAngajareMapper;
+import org.fasttrackit.salaryApplication.client.mapper.DateAngajatiMapper;
 import org.fasttrackit.salaryApplication.client.model.DateAngajatiDTO;
-import org.fasttrackit.salaryApplication.client.model.DateAngajatiMapper;
-import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.service.DateAngajatiService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.fasttrackit.salaryApplication.client.model.DateAngajareMapper.*;
-import static org.fasttrackit.salaryApplication.client.model.DateAngajatiMapper.*;
+import static org.fasttrackit.salaryApplication.client.mapper.DateAngajatiMapper.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,7 +21,7 @@ public class DateAngajatiController {
     @GetMapping("/date_personale")
     public List<DateAngajatiDTO> getDatePersonale() {
         return service.getDateAngajati().stream()
-                .map(DateAngajatiMapper::toDtoDateAngajati )
+                .map(DateAngajatiMapper::toDtoDateAngajati)
                 .toList();
     }
 
@@ -33,15 +29,16 @@ public class DateAngajatiController {
     public DateAngajatiDTO getDateAngajatiByMarca(@PathVariable Integer marca) {
         return toDtoDateAngajati(service.getAngajatByMarca(marca));
     }
+
     @PostMapping("/date_personale")
-        public DateAngajatiDTO addNewEmployeeDatePersonale(@RequestBody DateAngajatiDTO newEmployee) {
-            DateAngajati dateAngajatiEntity = service.addAngajatNou(toEntityDateAngajati(newEmployee));
-            return toDtoDateAngajati(dateAngajatiEntity);
-        }
+    public DateAngajatiDTO addNewEmployeeDatePersonale(@RequestBody DateAngajatiDTO newEmployee) {
+        DateAngajati dateAngajatiEntity = service.addAngajatNou(toEntityDateAngajati(newEmployee));
+        return toDtoDateAngajati(dateAngajatiEntity);
+    }
 
     @PutMapping("/date_personale/{marca}")
     public DateAngajatiDTO updateDateAngajati(@PathVariable Integer marca, @RequestBody DateAngajatiDTO dateAngajati) {
-        return toDtoUpdateDateAngajati(marca,service.updateDateAngajat(marca, toEntityDateAngajati(dateAngajati)));
+        return toDtoUpdateDateAngajati(marca, service.updateDateAngajat(marca, toEntityDateAngajati(dateAngajati)));
     }
 
     @DeleteMapping("/date_personale/{marca}")

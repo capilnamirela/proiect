@@ -2,9 +2,6 @@ package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
 import org.fasttrackit.salaryApplication.exceptions.ResourceNotFoundException;
-import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
-import org.fasttrackit.salaryApplication.model.DateAngajati;
-import org.fasttrackit.salaryApplication.model.DateSalariale;
 import org.fasttrackit.salaryApplication.model.Pontaj;
 import org.fasttrackit.salaryApplication.repository.DateAngajatiRepository;
 import org.fasttrackit.salaryApplication.repository.PontajRepository;
@@ -50,10 +47,10 @@ public class PontajService {
         Pontaj foundPontaj = getPontajByMarca(marca);
         Pontaj updatedPontaj = Pontaj.builder()
                 .marca(foundPontaj.getMarca())
-                .zileLucratoare(foundPontaj.getZileLucratoare())
-                .zileLucrate(foundPontaj.getZileLucrate())
-                .zileCO(foundPontaj.getZileCO())
-                .zileCFS(foundPontaj.getZileCFS())
+                .zileLucratoare(updatePontaj.getZileLucratoare())
+                .zileLucrate(updatePontaj.getZileLucrate())
+                .zileCO(updatePontaj.getZileCO())
+                .zileCFS(updatePontaj.getZileCFS())
                 .build();
         return pontajRepository.save(updatedPontaj);
     }

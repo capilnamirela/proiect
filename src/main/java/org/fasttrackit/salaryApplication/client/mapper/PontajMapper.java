@@ -1,5 +1,6 @@
-package org.fasttrackit.salaryApplication.client.model;
+package org.fasttrackit.salaryApplication.client.mapper;
 
+import org.fasttrackit.salaryApplication.client.model.PontajDTO;
 import org.fasttrackit.salaryApplication.model.Pontaj;
 import org.springframework.stereotype.Component;
 

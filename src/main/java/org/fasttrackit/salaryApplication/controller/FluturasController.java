@@ -16,14 +16,14 @@ import java.util.Map;
 public class FluturasController {
     private final CalculFluturasService service;
 
-    @GetMapping("/fluturas")
-        public List<Map<String, Integer>> getFluturasi() {
+    @GetMapping("/fluturasi")
+    public List<Map<String, Integer>> getFluturasi() {
         return service.getFluturasiSalarizare();
     }
 
-    @GetMapping("/fluturas/{marca}")
+    @GetMapping("/fluturasi/{marca}")
     public Map<String, Integer> fluturasSalarizareMarca(@PathVariable Integer marca) {
-       return service.fluturasSalarizareMarca(marca);
+        return service.fluturasSalarizareMarca(marca);
     }
 
 

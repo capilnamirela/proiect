@@ -1,9 +1,7 @@
-package org.fasttrackit.salaryApplication.client.model;
+package org.fasttrackit.salaryApplication.client.mapper;
 
-import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
+import org.fasttrackit.salaryApplication.client.model.DateAngajatiDTO;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
-
-import java.time.LocalDate;
 
 public class DateAngajatiMapper {
 

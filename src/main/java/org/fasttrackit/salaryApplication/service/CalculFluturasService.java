@@ -1,7 +1,6 @@
 package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
-import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.model.DateSalariale;
 import org.fasttrackit.salaryApplication.repository.DateAngajatiRepository;
 import org.fasttrackit.salaryApplication.repository.DateSalarialeRepository;
@@ -43,7 +42,7 @@ public class CalculFluturasService {
         fluturas.put("Salariu zile lucrate", salariuZileLucrate(marca));
         fluturas.put("Alte Drepturi", salariuAlteDrepturi(marca));
         fluturas.put("Tichete masa", ticheteMasa(marca));
-        fluturas.put("Venit brut", salariuCO(marca) + salariuZileLucrate(marca) + salariuAlteDrepturi(marca) + ticheteMasa(marca));
+        fluturas.put("Venit brut", (salariuCO(marca) + salariuZileLucrate(marca) + salariuAlteDrepturi(marca) + ticheteMasa(marca)));
         fluturas.put("Contributie CAS", calculCAS(marca));
         fluturas.put("Contributie sanatate", calculCASS(marca));
         fluturas.put("Impozit", calculImpozit(marca));
@@ -55,12 +54,12 @@ public class CalculFluturasService {
         List<Map<String, Integer>> fluturasi = new ArrayList<>();
 
         for (DateSalariale dateSalariale : dateSalarialeRepository.findAll()) {
+            if(dateSalariale != null && pontajRepository.existsById(dateSalariale.getMarca())){
             Map<String, Integer> fluturas = fluturasSalarizareMarca(dateSalariale.getMarca());
-            fluturasi.add(fluturas);
+            fluturasi.add(fluturas);}
         }
         return fluturasi;
     }
-
 
 
     public Integer salariuCO(Integer marca) {

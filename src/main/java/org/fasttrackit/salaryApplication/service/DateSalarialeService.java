@@ -2,8 +2,6 @@ package org.fasttrackit.salaryApplication.service;
 
 import lombok.Data;
 import org.fasttrackit.salaryApplication.exceptions.ResourceNotFoundException;
-import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
-import org.fasttrackit.salaryApplication.model.DateAngajati;
 import org.fasttrackit.salaryApplication.model.DateSalariale;
 import org.fasttrackit.salaryApplication.repository.DateAngajatiRepository;
 import org.fasttrackit.salaryApplication.repository.DateSalarialeRepository;
@@ -47,11 +45,11 @@ public class DateSalarialeService {
         DateSalariale foundDateSalariale = getDateSalarialeByMarca(marca);
         DateSalariale updatedDateSalariale = DateSalariale.builder()
                 .marca(foundDateSalariale.getMarca())
-                .salariuIncadrare(foundDateSalariale.getSalariuIncadrare())
-                .alteDrepturi(foundDateSalariale.getAlteDrepturi())
-                .ticheteMasa(foundDateSalariale.getTicheteMasa())
+                .salariuIncadrare(updateDateSalariale.getSalariuIncadrare())
+                .alteDrepturi(updateDateSalariale.getAlteDrepturi())
+                .ticheteMasa(updateDateSalariale.getTicheteMasa())
                 .build();
-        return dateSalarialeRepository.save(updateDateSalariale);
+        return dateSalarialeRepository.save(updatedDateSalariale);
     }
 
     public DateSalariale deleteDateSalariale(Integer marca) {

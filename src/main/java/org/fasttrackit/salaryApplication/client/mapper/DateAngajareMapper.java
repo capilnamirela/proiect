@@ -1,5 +1,6 @@
-package org.fasttrackit.salaryApplication.client.model;
+package org.fasttrackit.salaryApplication.client.mapper;
 
+import org.fasttrackit.salaryApplication.client.model.DateAngajareDTO;
 import org.fasttrackit.salaryApplication.model.DateAngajareUnitate;
 import org.springframework.stereotype.Component;
 
@@ -36,7 +37,6 @@ public class DateAngajareMapper {
                 .functie(dateAngajareDTO.functie())
                 .build();
     }
-
 
 
 }

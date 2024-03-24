@@ -22,7 +22,7 @@ public class CommandRunner implements CommandLineRunner {
     private final FileReader fileReader;
 
     @Override
-    public void run(String... args) throws IOException {
+    public void run(String... args) {
         this.dateAngajatiRepository.saveAll(fileReader.completeazaDateAngajati());
         this.dateAngajareUnitateRepository.saveAll(fileReader.completeazaDateAngajare());
         this.dateSalarialeRepository.saveAll(fileReader.completeazaDateSalariale());
