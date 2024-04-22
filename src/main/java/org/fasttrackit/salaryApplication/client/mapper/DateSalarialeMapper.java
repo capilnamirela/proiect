@@ -2,7 +2,9 @@ package org.fasttrackit.salaryApplication.client.mapper;
 
 import org.fasttrackit.salaryApplication.client.model.DateSalarialeDTO;
 import org.fasttrackit.salaryApplication.model.DateSalariale;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DateSalarialeMapper {
 
     public static DateSalarialeDTO toDtoDateSalariale(DateSalariale dateSalariale) {

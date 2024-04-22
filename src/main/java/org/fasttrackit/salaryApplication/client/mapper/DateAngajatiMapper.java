@@ -2,7 +2,9 @@ package org.fasttrackit.salaryApplication.client.mapper;
 
 import org.fasttrackit.salaryApplication.client.model.DateAngajatiDTO;
 import org.fasttrackit.salaryApplication.model.DateAngajati;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DateAngajatiMapper {
 
     public static DateAngajatiDTO toDtoDateAngajati(DateAngajati dateAngajati) {
