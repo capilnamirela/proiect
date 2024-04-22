@@ -41,6 +41,7 @@ public class DateAngajatiService {
                 .prenume(updateDateAngajati.getPrenume())
                 .cnp(updateDateAngajati.getCnp())
                 .adresa(updateDateAngajati.getAdresa())
+                .copiiMinori(updateDateAngajati.getCopiiMinori())
                 .build();
         return dateAngajatiRepository.save(updatedAngajat);
     }

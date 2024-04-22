@@ -8,6 +8,7 @@ public record DateAngajatiDTO(
         String nume,
         String prenume,
         String cnp,
-        String adresa
+        String adresa,
+        Integer copiiMinori
 ) {
 }

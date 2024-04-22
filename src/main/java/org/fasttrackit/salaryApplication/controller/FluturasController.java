@@ -17,12 +17,12 @@ public class FluturasController {
     private final CalculFluturasService service;
 
     @GetMapping("/fluturasi")
-    public List<Map<String, Integer>> getFluturasi() {
+    public List<Map<String, String>> getFluturasi() {
         return service.getFluturasiSalarizare();
     }
 
     @GetMapping("/fluturasi/{marca}")
-    public Map<String, Integer> fluturasSalarizareMarca(@PathVariable Integer marca) {
+    public Map<String, String> fluturasSalarizareMarca(@PathVariable Integer marca) {
         return service.fluturasSalarizareMarca(marca);
     }
 

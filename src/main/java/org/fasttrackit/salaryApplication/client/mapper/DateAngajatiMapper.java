@@ -12,6 +12,7 @@ public class DateAngajatiMapper {
                 .prenume(dateAngajati.getPrenume())
                 .cnp(dateAngajati.getCnp())
                 .adresa(dateAngajati.getAdresa())
+                .copiiMinori(dateAngajati.getCopiiMinori())
                 .build();
     }
 
@@ -21,6 +22,7 @@ public class DateAngajatiMapper {
                 .prenume(dateAngajati.getPrenume())
                 .cnp(dateAngajati.getCnp())
                 .adresa(dateAngajati.getAdresa())
+                .copiiMinori(dateAngajati.getCopiiMinori())
                 .build();
     }
 
@@ -32,6 +34,7 @@ public class DateAngajatiMapper {
                 .prenume(dateAngajatiDTO.prenume())
                 .cnp(dateAngajatiDTO.cnp())
                 .adresa(dateAngajatiDTO.adresa())
+                .copiiMinori(dateAngajatiDTO.copiiMinori())
                 .build();
     }
 

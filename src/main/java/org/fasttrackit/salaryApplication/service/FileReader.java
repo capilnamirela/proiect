@@ -81,6 +81,7 @@ public class FileReader implements DataProvider {
                 .prenume(angajati[2])
                 .cnp(angajati[3])
                 .adresa(angajati[4])
+                .copiiMinori(valueOf(angajati[11]))
                 .build();
     }
 

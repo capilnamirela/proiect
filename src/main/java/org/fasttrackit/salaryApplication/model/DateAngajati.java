@@ -21,6 +21,8 @@ public class DateAngajati {
     private String cnp;
     @Column
     private String adresa;
+    @Column
+    private Integer copiiMinori;
 
     @JsonIgnore
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
